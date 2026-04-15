@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEATS DUBAI — Frequencies of Peace</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#CE1126;--green:#00732F;--gold:#C9A84C;--white:#F0EDE6;--dim:#6b6355;--bg:#050403;--card:#0c0a07;--border:rgba(201,168,76,0.15);--d:'Bebas Neue',sans-serif;--m:'Share Tech Mono',monospace;--b:'Barlow Condensed',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:var(--b);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(5,4,3,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.ni{display:flex;align-items:center;justify-content:space-between;height:56px;max-width:1200px;margin:0 auto;padding:0 5vw;}
+.logo{font-family:var(--d);font-size:20px;letter-spacing:0.12em;cursor:pointer;color:var(--white);}
+.logo span{color:var(--red);}
+.links{display:flex;gap:20px;align-items:center;}
+.links a{font-family:var(--m);font-size:9px;letter-spacing:0.22em;color:var(--dim);text-decoration:none;cursor:pointer;transition:color 0.2s;border:none;background:none;}
+.links a:hover,.links a.on{color:var(--gold);}
+.links a.cta{background:var(--red);color:var(--white)!important;padding:6px 14px;}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.ham span{width:22px;height:1px;background:var(--white);display:block;}
+.flag{height:3px;display:flex;position:fixed;top:56px;left:0;right:0;z-index:9998;}
+.flag div{flex:1;}
+.fr{background:var(--red);}.fw{background:var(--white);}.fb{background:#111;}.fg{background:var(--green);}
+.page{display:none;padding-top:59px;min-height:100vh;}
+.page.on{display:block;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw;}
+.stag{font-family:var(--m);font-size:9px;letter-spacing:0.38em;color:var(--red);margin-bottom:12px;}
+.stitle{font-family:var(--d);font-size:clamp(36px,6vw,66px);letter-spacing:0.05em;color:var(--white);margin-bottom:10px;line-height:1;}
+.sbar{width:48px;height:2px;background:var(--red);margin-bottom:18px;}
+.ssub{font-size:15px;font-weight:300;color:var(--dim);line-height:1.85;margin-bottom:46px;max-width:560px;}
+.btn-r{background:var(--red);color:var(--white);font-family:var(--m);font-size:10px;letter-spacing:0.22em;padding:13px 28px;border:none;cursor:pointer;display:inline-block;text-decoration:none;transition:background 0.2s;}
+.btn-r:hover{background:#a00e1e;}
+.btn-g{background:transparent;color:var(--gold);font-family:var(--m);font-size:10px;letter-spacing:0.22em;padding:12px 27px;border:1px solid rgba(201,168,76,0.4);cursor:pointer;display:inline-block;text-decoration:none;transition:all 0.2s;}
+.btn-g:hover{border-color:var(--gold);background:rgba(201,168,76,0.06);}
+.rv{opacity:0;transform:translateY(32px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.rv.vs{opacity:1;transform:none;}
+
+/* HOME */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 5vw;position:relative;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(206,17,38,0.12) 0%,transparent 60%);}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.025) 1px,transparent 1px);background-size:60px 60px;}
+.sig{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.sr{position:absolute;border-radius:50%;border:1px solid rgba(206,17,38,0.07);transform:translate(-50%,-50%);animation:sp 4s ease-out infinite;}
+.sr:nth-child(2){animation-delay:1.4s;}
+.sr:nth-child(3){animation-delay:2.8s;}
+@keyframes sp{0%{width:80px;height:80px;opacity:0.9;}100%{width:700px;height:700px;opacity:0;}}
+.htag{font-family:var(--m);font-size:9px;letter-spacing:0.42em;color:rgba(201,168,76,0.55);margin-bottom:16px;position:relative;z-index:1;}
+.htitle{font-family:var(--d);font-size:clamp(70px,13vw,145px);letter-spacing:0.04em;line-height:0.88;color:var(--white);position:relative;z-index:1;}
+.htitle .red{color:var(--red);}
+.hsub{font-family:var(--d);font-size:clamp(17px,3.5vw,36px);letter-spacing:0.22em;color:var(--gold);margin:12px 0 26px;position:relative;z-index:1;}
+.hline{width:150px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--red),transparent);margin:0 auto 26px;position:relative;z-index:1;}
+.hdesc{font-size:clamp(13px,1.8vw,16px);font-weight:300;color:rgba(240,237,230,0.55);max-width:540px;line-height:1.85;margin:0 auto 44px;position:relative;z-index:1;}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);}
+.pill{background:var(--card);padding:34px 26px;position:relative;overflow:hidden;transition:background 0.3s;}
+.pill::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--pa,var(--red));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.pill:hover::before{transform:scaleX(1);}
+.pill:hover{background:#0f0d0a;}
+.pnum{font-family:var(--m);font-size:8px;letter-spacing:0.3em;color:var(--dim);margin-bottom:12px;}
+.pico{font-size:24px;margin-bottom:12px;}
+.ptit{font-family:var(--d);font-size:24px;letter-spacing:0.06em;color:var(--white);margin-bottom:8px;}
+.pdsc{font-size:13px;font-weight:300;color:var(--dim);line-height:1.85;}
+.ptag{font-family:var(--m);font-size:8px;letter-spacing:0.18em;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.qblock{background:rgba(206,17,38,0.06);border-left:3px solid var(--red);padding:60px 5vw;}
+.qi{max-width:860px;margin:0 auto;}
+.qt{font-family:var(--d);font-size:clamp(24px,3.8vw,46px);letter-spacing:0.04em;line-height:1.18;color:var(--white);margin-bottom:16px;}
+.qa{font-family:var(--m);font-size:8px;letter-spacing:0.28em;color:var(--gold);}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);}
+.nc{background:var(--card);padding:26px 18px;text-align:center;}
+.nv{font-family:var(--d);font-size:46px;color:var(--red);line-height:1;}
+.nl{font-family:var(--m);font-size:7.5px;letter-spacing:0.2em;color:var(--dim);margin-top:4px;}
+
+/* ABOUT */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;padding:80px 5vw;max-width:1200px;margin:0 auto;}
+.cbox{background:var(--card);border:1px solid var(--border);padding:30px;position:relative;}
+.cbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--gold));}
+.ci{display:flex;gap:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border);}
+.ci:last-child{border:none;margin:0;padding:0;}
+.cn{font-family:var(--d);font-size:32px;color:var(--red);width:68px;flex-shrink:0;}
+.ct{font-size:12px;font-weight:300;color:var(--dim);line-height:1.65;}
+.ct strong{color:var(--white);font-weight:600;display:block;margin-bottom:2px;}
+.tlw{padding:0 5vw 70px;max-width:1200px;margin:0 auto;}
+.tli{display:flex;gap:28px;padding-bottom:32px;position:relative;}
+.tli::before{content:'';position:absolute;left:84px;top:26px;bottom:0;width:1px;background:var(--border);}
+.tli:last-child::before{display:none;}
+.tld{font-family:var(--m);font-size:9px;letter-spacing:0.16em;color:var(--gold);width:84px;flex-shrink:0;padding-top:2px;}
+.tldot{width:11px;height:11px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:2px;box-shadow:0 0 10px rgba(206,17,38,0.5);}
+.tltt{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.tldc{font-size:12px;font-weight:300;color:var(--dim);line-height:1.75;}
+
+/* EVENTS */
+.evh{padding:78px 5vw 34px;max-width:1200px;margin:0 auto;}
+.fbar{background:rgba(206,17,38,0.06);border:1px solid rgba(206,17,38,0.14);padding:20px 24px;margin:0 5vw 32px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.fpct{font-family:var(--d);font-size:42px;color:var(--red);flex-shrink:0;}
+.ftit{font-family:var(--d);font-size:17px;color:var(--white);margin-bottom:3px;}
+.fdsc{font-size:12px;font-weight:300;color:var(--dim);line-height:1.65;}
+.iblock{background:var(--card);border:1px solid rgba(201,168,76,0.2);padding:38px;text-align:center;margin:0 5vw 32px;max-width:1200px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden;}
+.iblock::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--red),var(--gold),transparent);}
+.iscan{font-family:var(--m);font-size:8px;letter-spacing:0.38em;color:var(--green);margin-bottom:8px;animation:bl 2s step-end infinite;}
+@keyframes bl{50%{opacity:0;}}
+.itit{font-family:var(--d);font-size:clamp(30px,5vw,54px);color:var(--gold);letter-spacing:0.1em;margin-bottom:8px;}
+.idsc{font-size:13px;font-weight:300;color:var(--dim);margin-bottom:18px;}
+.egrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;background:var(--border);padding:0 5vw;max-width:1200px;margin:0 auto;}
+.ec{background:var(--card);overflow:hidden;transition:transform 0.3s;}
+.ec:hover{transform:translateY(-3px);}
+.ech{padding:24px 24px 16px;border-bottom:1px solid var(--border);position:relative;}
+.ebdg{display:inline-flex;flex-direction:column;align-items:center;background:var(--red);padding:6px 12px;margin-bottom:12px;}
+.eday{font-family:var(--d);font-size:28px;color:var(--white);line-height:1;}
+.emon{font-family:var(--m);font-size:7px;letter-spacing:0.16em;color:rgba(255,255,255,0.65);}
+.est{position:absolute;top:24px;right:24px;font-family:var(--m);font-size:7px;letter-spacing:0.16em;padding:3px 8px;}
+.sg{background:rgba(0,115,47,0.1);color:var(--green);border:1px solid rgba(0,115,47,0.25);}
+.sr2{background:rgba(206,17,38,0.08);color:var(--red);border:1px solid rgba(206,17,38,0.2);}
+.enm{font-family:var(--d);font-size:22px;letter-spacing:0.05em;color:var(--white);margin-bottom:4px;}
+.esub{font-family:var(--m);font-size:8px;letter-spacing:0.16em;color:var(--gold);}
+.ecb{padding:16px 24px 24px;}
+.edt{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.edi{font-size:11px;width:14px;}
+.edt2{font-size:12px;font-weight:300;color:var(--dim);}
+.etags{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0;}
+.etag{font-family:var(--m);font-size:7px;letter-spacing:0.12em;padding:2px 6px;border:1px solid var(--border);color:var(--dim);}
+.ecta{display:block;border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-family:var(--m);font-size:8px;letter-spacing:0.16em;padding:10px;text-align:center;cursor:pointer;transition:all 0.2s;background:transparent;width:100%;}
+.ecta:hover{background:rgba(201,168,76,0.07);border-color:var(--gold);}
+.ecta.rc{border-color:rgba(206,17,38,0.35);color:var(--red);}
+.ecta.rc:hover{background:rgba(206,17,38,0.07);border-color:var(--red);}
+
+/* LOYALTY */
+.lsec{padding:78px 5vw;max-width:1200px;margin:0 auto;}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border);}
+.tier{background:var(--card);padding:30px 24px;position:relative;}
+.tier::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc,var(--red));}
+.tn{font-family:var(--d);font-size:50px;color:var(--tc,var(--red));line-height:1;margin-bottom:4px;}
+.te{font-family:var(--m);font-size:7.5px;letter-spacing:0.22em;color:var(--dim);margin-bottom:5px;}
+.tname{font-family:var(--d);font-size:20px;letter-spacing:0.08em;color:var(--white);margin-bottom:14px;}
+.tbs{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.tbs li{font-size:12px;font-weight:300;color:var(--dim);padding-left:13px;position:relative;line-height:1.6;}
+.tbs li::before{content:'→';position:absolute;left:0;color:var(--tc,var(--red));font-size:9px;}
+.refsec{background:rgba(201,168,76,0.04);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:58px 5vw;}
+.refin{max-width:1200px;margin:0 auto;}
+.reft{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);margin-top:28px;}
+.refc{background:var(--card);padding:20px 16px;text-align:center;}
+.refn{font-family:var(--d);font-size:34px;color:var(--gold);line-height:1;}
+.refl{font-family:var(--m);font-size:7px;letter-spacing:0.16em;color:var(--dim);margin:4px 0;}
+.refr{font-size:11px;font-weight:600;color:var(--white);}
+.dsec{padding:78px 5vw;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.dcs{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.sw{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.swb{width:48px;height:48px;border-radius:2px;}
+.swl{font-family:var(--m);font-size:7px;letter-spacing:0.13em;color:var(--dim);}
+.dbox{background:var(--card);border:1px solid var(--border);padding:18px;margin-top:14px;}
+.dbt{font-family:var(--m);font-size:8px;letter-spacing:0.22em;color:var(--gold);margin-bottom:5px;}
+.dbd{font-size:12px;font-weight:300;color:var(--dim);line-height:1.7;}
+
+/* RIDES */
+.rsec{padding:78px 5vw;background:rgba(0,0,0,0.25);border-top:1px solid var(--border);}
+.rin{max-width:1200px;margin:0 auto;}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:46px;}
+.rfts{display:flex;flex-direction:column;gap:14px;}
+.rft{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:1px solid var(--border);}
+.rfti{font-size:18px;flex-shrink:0;}
+.rftt{font-size:12px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.rftd{font-size:11px;font-weight:300;color:var(--dim);line-height:1.6;}
+.rprc{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px;}
+.pc{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center;position:relative;}
+.pc.fp::before{content:'POPULAR';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-family:var(--m);font-size:7px;padding:2px 7px;}
+.pz{font-family:var(--m);font-size:7.5px;letter-spacing:0.18em;color:var(--dim);margin-bottom:5px;}
+.pv{font-family:var(--d);font-size:30px;color:var(--gold);line-height:1;}
+.pu{font-family:var(--m);font-size:7px;color:var(--dim);}
+.csec{background:rgba(201,168,76,0.03);border-top:1px solid var(--border);padding:78px 5vw;}
+.cin{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.css2{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
+.csi{padding:14px 18px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);}
+.csit{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.csid{font-size:12px;font-weight:300;color:var(--dim);line-height:1.6;}
+
+/* CONTACT */
+.cw{padding:78px 5vw 90px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.flbl{font-family:var(--m);font-size:8px;letter-spacing:0.2em;color:var(--dim);display:block;margin-bottom:6px;text-transform:uppercase;}
+.finp{background:var(--card);border:1px solid var(--border);color:var(--white);font-family:var(--m);font-size:11px;padding:11px 14px;width:100%;outline:none;transition:border-color 0.2s;margin-bottom:11px;letter-spacing:0.03em;}
+.finp:focus{border-color:rgba(201,168,76,0.5);}
+textarea.finp{resize:none;height:80px;line-height:1.6;}
+select.finp option{background:var(--card);}
+.fchk{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;cursor:pointer;}
+.fchk input{width:13px;height:13px;margin-top:2px;accent-color:var(--red);flex-shrink:0;}
+.fchk span{font-size:12px;font-weight:300;color:var(--dim);line-height:1.6;}
+.fchk span strong{color:var(--white);}
+.fsub{background:var(--red);color:var(--white);font-family:var(--m);font-size:10px;letter-spacing:0.22em;border:none;padding:13px;width:100%;cursor:pointer;transition:background 0.2s;margin-top:5px;}
+.fsub:hover{background:#a00e1e;}
+.fok{display:none;background:rgba(0,115,47,0.1);border:1px solid rgba(0,115,47,0.3);color:var(--green);font-family:var(--m);font-size:9px;letter-spacing:0.16em;padding:13px;text-align:center;margin-top:9px;}
+.icd{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:11px;position:relative;}
+.icd::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red);}
+.icl{font-family:var(--m);font-size:7px;letter-spacing:0.26em;color:var(--dim);margin-bottom:6px;text-transform:uppercase;}
+.icv{font-size:13px;color:var(--white);line-height:1.6;}
+.icv a{color:var(--gold);text-decoration:none;}
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;}
+.sc{background:var(--card);border:1px solid var(--border);padding:13px;text-align:center;cursor:pointer;transition:border-color 0.2s;}
+.sc:hover{border-color:rgba(201,168,76,0.35);}
+.sh{font-family:var(--m);font-size:8px;letter-spacing:0.1em;color:var(--gold);}
+.sn{font-size:10px;font-weight:300;color:var(--dim);margin-top:2px;}
+
+footer{background:var(--card);border-top:1px solid var(--border);padding:34px 5vw;text-align:center;}
+.fl{font-family:var(--d);font-size:24px;letter-spacing:0.1em;margin-bottom:5px;}
+.fl span{color:var(--red);}
+.fs{font-family:var(--m);font-size:7.5px;letter-spacing:0.26em;color:var(--dim);margin-bottom:18px;}
+.ff{display:flex;height:2px;width:90px;margin:0 auto 14px;}
+.ff div{flex:1;}
+.fc{font-family:var(--m);font-size:7px;letter-spacing:0.16em;color:rgba(107,99,85,0.4);}
+
+@media(max-width:768px){
+  .links{display:none;}
+  .ham{display:flex;}
+  .links.op{display:flex;flex-direction:column;position:fixed;top:59px;left:0;right:0;background:rgba(5,4,3,0.99);padding:18px;gap:16px;border-bottom:1px solid var(--border);z-index:9997;}
+  .links.op a{font-size:13px;}
+  .agrid,.dsec,.rgrid,.cin,.cw{grid-template-columns:1fr;}
+  .tli{flex-direction:column;gap:5px;}
+  .tli::before{display:none;}
+  .tld{width:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="ni">
+    <div class="logo" id="btnHome">BEATS <span>DUBAI</span></div>
+    <div class="links" id="navLinks">
+      <a id="n-home" class="on">HOME</a>
+      <a id="n-about">ABOUT</a>
+      <a id="n-events">EVENTS</a>
+      <a id="n-loyalty">LOYALTY</a>
+      <a id="n-rides">BEATS &amp; RIDES</a>
+      <a id="n-contact">JOIN</a>
+      <a id="n-cta" class="cta">JOIN THE MOVEMENT</a>
+    </div>
+    <div class="ham" id="hamBtn"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="flag"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div>
+
+<!-- HOME -->
+<div class="page on" id="page-home">
+  <div class="hero">
+    <div class="hbg"></div><div class="hgrid"></div>
+    <div class="sig"><div class="sr"></div><div class="sr"></div><div class="sr"></div></div>
+    <div class="htag">📡 SIGNAL ACTIVE · DUBAI · 2026</div>
+    <div class="htitle">BEATS<br><span class="red">DUBAI</span></div>
+    <div class="hsub">FREQUENCIES OF PEACE</div>
+    <div class="hline"></div>
+    <div class="hdesc">When the world is at war, music doesn't stop. BEATS DUBAI is not an event. It is a response — a transmission of culture, unity, and humanity through sound.</div>
+    <div class="hbtns">
+      <button class="btn-r" id="h-events">SEE EVENTS</button>
+      <button class="btn-g" id="h-about">OUR MISSION</button>
+    </div>
+  </div>
+  <div style="padding:78px 0;background:rgba(0,0,0,0.22);border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div class="stag rv">THREE PILLARS</div>
+      <div class="stitle rv">What We Stand For</div>
+      <div class="sbar rv"></div>
+      <div class="ssub rv">Every beat we drop. Every artist we showcase. Every dirham we generate. It all serves one mission.</div>
+      <div class="pills rv">
+        <div class="pill" style="--pa:var(--red)"><div class="pnum">01</div><div class="pico">🎵</div><div class="ptit">EVENTS</div><div class="pdsc">Curated cultural experiences — not club nights. Each BEATS DUBAI event carries the Frequencies of Peace message.</div><div class="ptag" style="color:var(--red)">→ LIVE CULTURAL EVENTS</div></div>
+        <div class="pill" style="--pa:var(--gold)"><div class="pnum">02</div><div class="pico">📡</div><div class="ptit">THE UNDERGROUND CODE</div><div class="pdsc">UAE's only platform for undiscovered underground talent. Border to Border B2B format inside every event.</div><div class="ptag" style="color:var(--gold)">→ UAE TALENT PLATFORM</div></div>
+        <div class="pill" style="--pa:var(--green)"><div class="pnum">03</div><div class="pico">✊</div><div class="ptit">ADVOCACY</div><div class="pdsc">Fighting for Dubai's music community. 10% of every event's revenue goes directly to musicians and hospitality workers displaced by conflict.</div><div class="ptag" style="color:var(--green)">→ 10% TO COMMUNITY FUND</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="qblock rv"><div class="qi"><div class="qt">"When the Titanic was sinking, the musicians kept playing. Not because they had to. Because music was the only thing left that made people feel human."</div><div class="qa">— THE SOUL OF BEATS DUBAI</div></div></div>
+  <div style="padding:78px 0"><div class="wrap">
+    <div class="stag rv">THE FOUNDATION</div><div class="stitle rv">Built on Real Ground</div><div class="sbar rv"></div>
+    <div class="nums rv">
+      <div class="nc"><div class="nv">2023</div><div class="nl">DUBAI TOURISM ENGAGED</div></div>
+      <div class="nc"><div class="nv">12+</div><div class="nl">GOVERNMENT EMAILS</div></div>
+      <div class="nc"><div class="nv">200+</div><div class="nl">NATIONALITIES IN DUBAI</div></div>
+      <div class="nc"><div class="nv">10%</div><div class="nl">TO COMMUNITY FUND</div></div>
+    </div>
+  </div></div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="agrid">
+    <div>
+      <div class="stag rv">OUR STORY</div><div class="stitle rv">One Person.<br>One City.<br>One Mission.</div><div class="sbar rv"></div>
+      <p class="rv" style="font-size:15px;font-weight:300;color:var(--dim);line-height:1.9;margin-bottom:16px;">DJ RADAR (Renjith C.B) is a Dubai-based DJ with 17+ years inside the UAE's tourism, event, and entertainment industries.</p>
+      <p class="rv" style="font-size:15px;font-weight:300;color:var(--dim);line-height:1.9;margin-bottom:16px;">In 2023 — before Untold Dubai, before Tomorrowland — he submitted a proposal directly to the CEO of Dubai Festivals and Retail Establishment. Dubai Tourism's senior leadership personally engaged. The Zoom call was confirmed.</p>
+      <p class="rv" style="font-size:15px;font-weight:300;color:var(--dim);line-height:1.9;">BEATS DUBAI: Frequencies of Peace is the evolution of that vision. A music movement that answers conflict with culture, community, and sound.</p>
+    </div>
+    <div class="rv"><div class="cbox">
+      <div class="stag" style="margin-bottom:18px">CREDIBILITY RECORD</div>
+      <div class="ci"><div class="cn">2023</div><div class="ct"><strong>Dubai Tourism Engagement</strong>CEO office of Dubai Festivals personally replied to the original proposal within days</div></div>
+      <div class="ci"><div class="cn">31</div><div class="ct"><strong>Slide Presentation Deck</strong>Reviewed by Miguel Graciani, Senior Manager Festivals and Events Development, Dubai Economy and Tourism</div></div>
+      <div class="ci"><div class="cn">12+</div><div class="ct"><strong>Documented Emails</strong>Full correspondence including Zoom call confirmed for September 25, 2023</div></div>
+      <div class="ci"><div class="cn">17+</div><div class="ct"><strong>Years in UAE</strong>Tourism, events, entertainment, transportation — including Expo 2020</div></div>
+    </div></div>
+  </div>
+  <div class="tlw">
+    <div class="stag rv">THE JOURNEY</div><div class="stitle rv" style="margin-bottom:36px">How We Got Here</div>
+    <div class="tli rv"><div class="tld">AUG 2023</div><div class="tldot"></div><div><div class="tltt">Dubai Electroverse Proposal Submitted</div><div class="tldc">DJ RADAR submitted the world's first Dubai-focused mega EDM festival concept directly to Ahmed Al Khaja, CEO of Dubai Festivals and Retail Establishment. The CEO's office personally replied within days.</div></div></div>
+    <div class="tli rv"><div class="tld">SEP 2023</div><div class="tldot"></div><div><div class="tltt">Dubai Tourism Zoom Call Confirmed</div><div class="tldc">Miguel Graciani, Senior Manager Festivals and Events Development, reviewed the 31-slide deck, provided the official sponsorship portal, and confirmed a 30-minute Zoom call for September 25, 2023.</div></div></div>
+    <div class="tli rv"><div class="tld">2023–25</div><div class="tldot"></div><div><div class="tltt">Dubai's Festival Economy Launches</div><div class="tldc">Untold Dubai, Tomorrowland, Ushuaia, Terrasolisis all launch — validating exactly what DJ RADAR proposed. The vision seeded an entire ecosystem.</div></div></div>
+    <div class="tli rv"><div class="tld">APR 2026</div><div class="tldot" style="background:var(--gold);box-shadow:0 0 10px rgba(201,168,76,0.5)"></div><div><div class="tltt">BEATS DUBAI: Frequencies of Peace Launches</div><div class="tldc">The vision evolves. A music movement with a humanitarian mission, a talent platform, a loyalty system, and a community that moves together.</div></div></div>
+  </div>
+  <div class="qblock rv"><div class="qi"><div class="qt" style="font-size:clamp(20px,3vw,34px)">"Dubai sits at the crossroads of East and West. 200+ nationalities. Every language. Every culture. BEATS DUBAI gives that city a soundtrack — and gives the world a signal that music speaks louder than war."</div><div class="qa">— DJ RADAR, FOUNDER · BEATS DUBAI</div></div></div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<!-- EVENTS -->
+<div class="page" id="page-events">
+  <div class="evh"><div class="stag rv">UPCOMING</div><div class="stitle rv">Events</div><div class="sbar rv"></div><div class="ssub rv">Every BEATS DUBAI event is a transmission. A message sent through sound to every person who has lost something.</div></div>
+  <div class="fbar rv"><div class="fpct">10%</div><div><div class="ftit">COMMUNITY FUND</div><div class="fdsc">10% of every dirham generated goes directly to musicians and hospitality workers affected by conflict. When you attend — you give.</div></div></div>
+  <div class="iblock rv">
+    <div class="iscan">📡 SCANNING... SIGNAL DETECTED</div>
+    <div class="itit">INTERCEPTING SOON</div>
+    <div style="font-family:var(--d);font-size:clamp(17px,3vw,26px);color:var(--white);letter-spacing:0.14em;margin-bottom:8px">FREQUENCIES OF PEACE · VOL. 1</div>
+    <div class="idsc">The first BEATS DUBAI event is being calibrated. Register your community membership for first access.</div>
+    <button class="btn-g" id="ev-join" style="margin-top:6px">JOIN COMMUNITY FOR FIRST ACCESS →</button>
+  </div>
+  <div class="egrid">
+    <div class="ec rv">
+      <div class="ech">
+        <div class="ebdg"><div class="eday">TBC</div><div class="emon">2026</div></div>
+        <div class="est sg">FREE ENTRY</div>
+        <div class="enm">THE UNDERGROUND CODE</div>
+        <div class="esub">SHOWCASE VOL. 1 — BORDER TO BORDER B2B</div>
+      </div>
+      <div class="ecb">
+        <div class="edt"><div class="edi">📍</div><div class="edt2">Dubai — Venue TBC</div></div>
+        <div class="edt"><div class="edi">🎵</div><div class="edt2">5 UAE underground artists · Live B2B format</div></div>
+        <div class="edt"><div class="edi">🎟</div><div class="edt2">Free for BEATS DUBAI community members</div></div>
+        <div class="etags"><span class="etag">FREE ENTRY</span><span class="etag">UAE TALENT</span><span class="etag">B2B FORMAT</span></div>
+        <button class="ecta" id="ev-artist">REGISTER AS ARTIST OR ATTENDEE →</button>
+      </div>
+    </div>
+    <div class="ec rv">
+      <div class="ech">
+        <div class="ebdg"><div class="eday">EVT</div><div class="emon">NIGHTS</div></div>
+        <div class="est sr2">BOOKABLE</div>
+        <div class="enm">BEATS &amp; RIDES</div>
+        <div class="esub">ARRIVE IN STYLE · EVERY EVENT NIGHT</div>
+      </div>
+      <div class="ecb">
+        <div class="edt"><div class="edi">🚗</div><div class="edt2">Luxury limo pickup from anywhere in Dubai</div></div>
+        <div class="edt"><div class="edi">🎵</div><div class="edt2">BEATS DUBAI playlist playing inside the car</div></div>
+        <div class="edt"><div class="edi">💎</div><div class="edt2">AED 150–300 per ride · Tier members get discounts</div></div>
+        <div class="etags"><span class="etag">LUXURY</span><span class="etag">PRE-PARTY</span><span class="etag">BOOKABLE</span></div>
+        <button class="ecta rc" id="ev-rides">BOOK YOUR RIDE →</button>
+      </div>
+    </div>
+  </div>
+  <div style="padding:36px 5vw 70px;max-width:1200px;margin:0 auto;text-align:center"><p style="font-family:var(--m);font-size:8px;letter-spacing:0.18em;color:var(--dim)">OFFICIAL TICKETING · BEATSDUBAI.TICMINT.COM · @BEATSDXBOFFICIAL</p></div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<!-- LOYALTY -->
+<div class="page" id="page-loyalty">
+  <div class="lsec">
+    <div class="stag rv">BEATS DUBAI LOYALTY</div><div class="stitle rv">The Frequency Tiers</div><div class="sbar rv"></div>
+    <div class="ssub rv">Attend events. Earn your tier. Unlock real benefits. The more you come — the deeper you go.</div>
+    <div class="tiers rv">
+      <div class="tier" style="--tc:var(--gold)"><div class="tn">7</div><div class="te">EVENTS ATTENDED</div><div class="tname">FREQUENCY LOCKED</div><ul class="tbs"><li>BEATS DUBAI Frequency Card — physical branded card</li><li>Priority entry — skip the queue always</li><li>10% off all Beats and Rides bookings</li><li>Name on The Underground Code digital wall</li><li>Inner circle WhatsApp community access</li></ul></div>
+      <div class="tier" style="--tc:var(--red)"><div class="tn">14</div><div class="te">EVENTS ATTENDED</div><div class="tname">SIGNAL CARRIER</div><ul class="tbs"><li>Everything in Tier 1 PLUS:</li><li>Free BEATS DUBAI T-shirt</li><li>Featured on @beatsdxbofficial Instagram</li><li>1 free Beats and Rides pickup per month</li><li>VIP table access at one event per month</li><li>Backstage at Underground Code showcases</li><li>10% door revenue share when you bring 10+ people</li></ul></div>
+      <div class="tier" style="--tc:var(--white)"><div class="tn">30</div><div class="te">EVENTS ATTENDED</div><div class="tname">YOU ARE BEATS DUBAI</div><ul class="tbs"><li>Full Ambassador title</li><li>Co-branded content across all accounts</li><li>Revenue share on every event you promote</li><li>Beats and Rides partnership opportunities</li><li>Invited into event planning circle</li></ul></div>
+    </div>
+  </div>
+  <div class="refsec">
+    <div class="refin">
+      <div class="stag rv">REFERRAL PROGRAMME</div><div class="stitle rv">Bring People. Earn Rewards.</div><div class="sbar rv"></div>
+      <div class="ssub rv">Every member gets a unique referral link. Share it. When someone registers through your link — you earn. Automatically tracked.</div>
+      <div class="reft rv">
+        <div class="refc"><div class="refn">1–4</div><div class="refl">REFERRALS</div><div class="refr">Community Recognition</div></div>
+        <div class="refc"><div class="refn">5</div><div class="refl">REFERRALS</div><div class="refr">Free Event Entry</div></div>
+        <div class="refc"><div class="refn">10</div><div class="refl">REFERRALS</div><div class="refr">Entry + T-Shirt</div></div>
+        <div class="refc"><div class="refn">20</div><div class="refl">REFERRALS</div><div class="refr">Entry + Shirt + Ride</div></div>
+        <div class="refc"><div class="refn">50</div><div class="refl">REFERRALS</div><div class="refr">Ambassador + Revenue Share</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="dsec">
+    <div>
+      <div class="stag rv">RADAR STYLE</div><div class="stitle rv">Dressed in Frequencies</div><div class="sbar rv"></div>
+      <p class="rv" style="font-size:14px;font-weight:300;color:var(--dim);line-height:1.85;margin-bottom:14px">Wear black with any UAE colour and you are one of us. Guests dressed in Frequencies get priority entry — no queue, no waiting.</p>
+      <div class="dcs rv">
+        <div class="sw"><div class="swb" style="background:#111;border:1px solid #333"></div><div class="swl">BLACK</div></div>
+        <div class="sw"><div class="swb" style="background:var(--red)"></div><div class="swl">UAE RED</div></div>
+        <div class="sw"><div class="swb" style="background:var(--green)"></div><div class="swl">UAE GREEN</div></div>
+        <div class="sw"><div class="swb" style="background:var(--gold)"></div><div class="swl">GOLD</div></div>
+        <div class="sw"><div class="swb" style="background:var(--white);border:1px solid #333"></div><div class="swl">WHITE</div></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="dbox"><div class="dbt">DRESSED IN FREQUENCIES — BENEFITS</div><div class="dbd">✓ Priority entry — skip the queue<br>✓ Featured on BEATS DUBAI Instagram stories<br>✓ Best dressed wins a free Beats and Rides pickup<br>✓ Counted towards your loyalty tier</div></div>
+      <div style="margin-top:14px;padding:18px;background:var(--card);border:1px solid var(--border)"><div class="stag" style="margin-bottom:8px">BEATS DUBAI MERCH</div><div style="font-size:13px;font-weight:300;color:var(--dim);line-height:1.7">Official BEATS DUBAI T-shirts available exclusively at events. Dark luxury design. Limited quantity per night.<br><br><strong style="color:var(--white)">AED 75 per shirt · Event nights only</strong></div></div>
+    </div>
+  </div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<!-- BEATS & RIDES -->
+<div class="page" id="page-rides">
+  <div class="rsec"><div class="rin">
+    <div class="stag rv">BEATS DUBAI PRESENTS</div><div class="stitle rv">Beats &amp; Rides</div><div class="sbar rv"></div>
+    <div class="ssub rv">The ride is the pre-party. Arrive in a luxury limo with the BEATS DUBAI frequency playing. Your entrance is your statement.</div>
+    <div class="rgrid">
+      <div class="rfts rv">
+        <div class="rft"><div class="rfti">🚗</div><div><div class="rftt">Luxury Limo Pickup</div><div class="rftd">Door-to-door from anywhere in Dubai. Saloon, SUV, or stretch available.</div></div></div>
+        <div class="rft"><div class="rfti">🎵</div><div><div class="rftt">BEATS DUBAI Soundtrack</div><div class="rftd">DJ RADAR curated playlist playing inside. Your ride starts the experience before you arrive.</div></div></div>
+        <div class="rft"><div class="rfti">📸</div><div><div class="rftt">Arrival Content</div><div class="rftd">With your permission, your arrival is filmed and posted on @beatsdxbofficial. You become part of the movement.</div></div></div>
+        <div class="rft"><div class="rfti">💎</div><div><div class="rftt">Tier Member Discounts</div><div class="rftd">Frequency Locked: 10% off. Signal Carrier: 1 free ride per month. Ambassador: partnership rate.</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="stag" style="margin-bottom:14px">PRICING PER RIDE</div>
+        <div class="rprc">
+          <div class="pc"><div class="pz">MARINA / JBR</div><div class="pv">150</div><div class="pu">AED ONE WAY</div></div>
+          <div class="pc fp"><div class="pz">BUSINESS BAY / DOWNTOWN</div><div class="pv">180</div><div class="pu">AED ONE WAY</div></div>
+          <div class="pc"><div class="pz">DEIRA / BUR DUBAI</div><div class="pv">200</div><div class="pu">AED ONE WAY</div></div>
+          <div class="pc"><div class="pz">SHARJAH / OUTLYING</div><div class="pv">280</div><div class="pu">AED ONE WAY</div></div>
+        </div>
+        <div style="margin-top:18px">
+          <div class="stag" style="margin-bottom:12px">BOOK YOUR RIDE</div>
+          <label class="flbl">Your Name</label><input class="finp" id="r-name" type="text" placeholder="Full name">
+          <label class="flbl">WhatsApp Number</label><input class="finp" id="r-wa" type="text" placeholder="+971 50 xxx xxxx">
+          <label class="flbl">Pickup Location</label><input class="finp" id="r-loc" type="text" placeholder="Building, area, Dubai">
+          <label class="flbl">Number of People</label><input class="finp" id="r-pax" type="number" placeholder="e.g. 2">
+          <label class="flbl">Event Date</label><input class="finp" id="r-date" type="text" placeholder="e.g. Friday 18 April 2026">
+          <label class="flbl">Loyalty Tier</label>
+          <select class="finp" id="r-tier"><option value="">Not a member yet</option><option>Frequency Locked — 7 events (10% discount)</option><option>Signal Carrier — 14 events (1 free ride/month)</option><option>Ambassador — 30 events (partnership rate)</option></select>
+          <button class="fsub" id="rideBtn">🚗 REQUEST BOOKING — WE CONFIRM VIA WHATSAPP</button>
+          <div class="fok" id="rideOk">✅ BOOKING REQUEST RECEIVED. WE CONFIRM YOUR RIDE ON WHATSAPP WITHIN 1 HOUR.</div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="csec"><div class="cin">
+    <div>
+      <div class="stag rv">B2B SERVICES</div><div class="stitle rv">RADAR Night Consulting</div><div class="sbar rv"></div>
+      <p class="rv" style="font-size:14px;font-weight:300;color:var(--dim);line-height:1.85">Running a venue in Dubai? RADAR Night Consulting helps clubs build consistent programming, themed nights, and crowd systems that work. BEATS DUBAI is the proof of concept.</p>
+      <div class="css2 rv">
+        <div class="csi"><div class="csit">Event Programming</div><div class="csid">Weekly and monthly calendars. Theme nights, concept development, talent booking.</div></div>
+        <div class="csi"><div class="csit">Crowd Strategy</div><div class="csid">Community building, WhatsApp network activation, referral systems.</div></div>
+        <div class="csi"><div class="csit">DJ and Artist Sourcing</div><div class="csid">Access to The Underground Code talent network.</div></div>
+        <div class="csi"><div class="csit">Social Media Direction</div><div class="csid">Content strategy and Instagram growth for venues.</div></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div style="background:var(--card);border:1px solid var(--border);padding:30px;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--red))"></div>
+        <div class="stag" style="margin-bottom:14px">VENUE ENQUIRY</div>
+        <label class="flbl">Venue Name</label><input class="finp" id="c-venue" type="text" placeholder="Your venue">
+        <label class="flbl">Contact Name</label><input class="finp" id="c-name" type="text" placeholder="Your name">
+        <label class="flbl">WhatsApp</label><input class="finp" id="c-wa" type="text" placeholder="+971 50 xxx xxxx">
+        <label class="flbl">What Do You Need?</label>
+        <textarea class="finp" id="c-msg" placeholder="Tell us about your venue..."></textarea>
+        <button class="fsub" id="consultBtn">📡 ENQUIRE NOW</button>
+        <div class="fok" id="consultOk">✅ ENQUIRY RECEIVED. DJ RADAR WILL CONTACT YOU WITHIN 24 HOURS.</div>
+      </div>
+    </div>
+  </div></div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div style="padding:78px 5vw 34px;max-width:1200px;margin:0 auto">
+    <div class="stag rv">JOIN THE MOVEMENT</div><div class="stitle rv">Register Free</div><div class="sbar rv"></div>
+    <div class="ssub rv">Become a BEATS DUBAI community member. Priority event access, early announcements, free entry to Underground Code showcases, and your unique referral link.</div>
+  </div>
+  <div class="cw">
+    <div class="rv" id="reg-sec">
+      <div style="font-family:var(--m);font-size:8px;letter-spacing:0.26em;color:var(--gold);margin-bottom:18px">COMMUNITY REGISTRATION — FREE</div>
+      <form name="beats-dubai-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html" id="regForm">
+        <input type="hidden" name="form-name" value="beats-dubai-registration">
+        <input type="hidden" name="referral" id="ref-field" value="">
+        <p style="display:none"><input name="bot-field"></p>
+        <label class="flbl">Full Name *</label>
+        <input class="finp" name="name" type="text" placeholder="Your name" required>
+        <label class="flbl">WhatsApp Number *</label>
+        <input class="finp" name="whatsapp" type="text" placeholder="+971 50 xxx xxxx" required>
+        <label class="flbl">Nationality</label>
+        <input class="finp" name="nationality" type="text" placeholder="e.g. Indian, Emirati, British...">
+        <label class="flbl">Music Preference</label>
+        <select class="finp" name="music">
+          <option value="">Select your vibe...</option>
+          <option>Underground / Electronic</option>
+          <option>Bollywood / South Indian</option>
+          <option>Techno / Dark Electronic</option>
+          <option>Arabic / Oriental</option>
+          <option>Hip Hop / R&amp;B</option>
+          <option>Everything — just bring the energy</option>
+        </select>
+        <label class="flbl">Area in Dubai</label>
+        <input class="finp" name="area" type="text" placeholder="e.g. Marina, Downtown, Deira...">
+        <label class="flbl">Are you a musician or work in music/hospitality?</label>
+        <select class="finp" name="musician">
+          <option value="">Select...</option>
+          <option>Yes — I am a musician / artist</option>
+          <option>Yes — I work in hospitality / events</option>
+          <option>No — I am a music lover</option>
+        </select>
+        <label class="flbl">Message (Optional)</label>
+        <textarea class="finp" name="message" placeholder="Want to perform? Partner with us? Tell us..."></textarea>
+        <div style="background:rgba(201,168,76,0.05);border:1px solid var(--border);padding:14px;margin-bottom:11px">
+          <div style="font-family:var(--m);font-size:8px;letter-spacing:0.22em;color:var(--gold);margin-bottom:9px">SELECT ALL THAT APPLY</div>
+          <label class="fchk"><input type="checkbox" name="vip-host" value="Yes"><span><strong>Apply as VIP Experience Host</strong> — Fashion-forward Dubai women. Free entry + Instagram feature + Beats and Rides priority.</span></label>
+          <label class="fchk"><input type="checkbox" name="artist" value="Yes"><span><strong>Apply to perform at The Underground Code</strong> — UAE underground artists only.</span></label>
+          <label class="fchk"><input type="checkbox" name="rides" value="Yes"><span><strong>Interested in Beats and Rides</strong> — Notify me when rides are available.</span></label>
+          <label class="fchk"><input type="checkbox" name="ambassador" value="Yes"><span><strong>Interested in becoming an Ambassador</strong> — I want to earn referral rewards.</span></label>
+        </div>
+        <button class="fsub" type="submit">📡 JOIN THE MOVEMENT — REGISTER FREE</button>
+      </form>
+    </div>
+    <div class="rv">
+      <div class="icd"><div class="icl">FOUNDER</div><div class="icv">DJ RADAR · Renjith C.B<br><span style="font-size:12px;color:var(--dim)">Dubai, UAE</span></div></div>
+      <div class="icd"><div class="icl">EVENTS AND BOOKINGS</div><div class="icv"><a href="#">artbat838 [at] gmail [dot] com</a></div></div>
+      <div class="icd"><div class="icl">TICKETING</div><div class="icv"><a href="https://beatsdubai.ticmint.com" target="_blank">beatsdubai.ticmint.com</a></div></div>
+      <div class="icd"><div class="icl">BEATS AND RIDES BOOKINGS</div><div class="icv" style="font-size:13px;color:var(--dim);line-height:1.65">Luxury limo pickup for every event night. <a href="#" id="c-rides-link">→ Book a ride</a></div></div>
+      <div style="font-family:var(--m);font-size:8px;letter-spacing:0.2em;color:var(--dim);margin:18px 0 9px">FOLLOW THE SIGNAL</div>
+      <div class="sg2">
+        <div class="sc"><div class="sh">@djradar1</div><div class="sn">DJ RADAR</div></div>
+        <div class="sc"><div class="sh">@beatsdxbofficial</div><div class="sn">BEATS DUBAI</div></div>
+        <div class="sc"><div class="sh">@theundergroundcode</div><div class="sn">UNDERGROUND CODE</div></div>
+        <div class="sc"><div class="sh">@radarnightconsulting</div><div class="sn">NIGHT CONSULTING</div></div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="fl">BEATS <span>DUBAI</span></div><div class="fs">[ THE UNDERGROUND CODE ] · FREQUENCIES OF PEACE</div><div class="ff"><div class="fr"></div><div class="fw"></div><div class="fb"></div><div class="fg"></div></div><div class="fc">© 2026 BEATS DUBAI · DJ RADAR · DUBAI, UAE</div></footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var APPS_URL = 'https://script.google.com/macros/s/AKfycbz8Li4E0TFu10pGUXdlBI8EdLrbMWgtnFYAzSIyKHUFPv9JKWElRX5LH-Qz2ddrX_K58Q/exec';
+
+// ── NAVIGATION ──────────────────────────────────────────────────────
+function showPage(name) {
+  var pages = document.querySelectorAll('.page');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('on');
+  var navs = document.querySelectorAll('.links a');
+  for(var j=0;j<navs.length;j++) navs[j].classList.remove('on');
+  var pg = document.getElementById('page-'+name);
+  if(pg) pg.classList.add('on');
+  var nv = document.getElementById('n-'+name);
+  if(nv) nv.classList.add('on');
+  window.scrollTo(0,0);
+  document.getElementById('navLinks').classList.remove('op');
+  setTimeout(reveal,100);
+  setTimeout(reveal,500);
+}
+
+// NAV LINKS
+function bindNav(id, page) {
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('click', function(){ showPage(page); });
+}
+bindNav('n-home','home');
+bindNav('n-about','about');
+bindNav('n-events','events');
+bindNav('n-loyalty','loyalty');
+bindNav('n-rides','rides');
+bindNav('n-contact','contact');
+bindNav('n-cta','contact');
+bindNav('btnHome','home');
+
+// HERO BUTTONS
+var he = document.getElementById('h-events');
+var ha = document.getElementById('h-about');
+if(he) he.addEventListener('click', function(){ showPage('events'); });
+if(ha) ha.addEventListener('click', function(){ showPage('about'); });
+
+// EVENT PAGE BUTTONS
+var ej = document.getElementById('ev-join');
+var ea = document.getElementById('ev-artist');
+var er = document.getElementById('ev-rides');
+if(ej) ej.addEventListener('click', function(){ showPage('contact'); });
+if(ea) ea.addEventListener('click', function(){ showPage('contact'); });
+if(er) er.addEventListener('click', function(){ showPage('rides'); });
+
+// CONTACT RIDES LINK
+var crl = document.getElementById('c-rides-link');
+if(crl) crl.addEventListener('click', function(e){ e.preventDefault(); showPage('rides'); });
+
+// HAMBURGER
+var hb = document.getElementById('hamBtn');
+if(hb) hb.addEventListener('click', function(){
+  document.getElementById('navLinks').classList.toggle('op');
+});
+
+// ── REVEAL ──────────────────────────────────────────────────────────
+function reveal() {
+  var els = document.querySelectorAll('.page.on .rv');
+  for(var i=0;i<els.length;i++){
+    var r = els[i].getBoundingClientRect();
+    if(r.top < window.innerHeight * 0.93) els[i].classList.add('vs');
+  }
+}
+window.addEventListener('scroll', reveal);
+setTimeout(reveal,200);
+setTimeout(reveal,700);
+
+// ── REFERRAL ────────────────────────────────────────────────────────
+function genRef(name) {
+  var c = name.toLowerCase().replace(/\s+/g,'').replace(/[^a-z0-9]/g,'');
+  return window.location.origin + window.location.pathname + '?ref=' + c + Math.floor(Math.random()*900+100);
+}
+
+// ── REGISTRATION ────────────────────────────────────────────────────
+var regBtn = document.getElementById('regBtn');
+if(regBtn) regBtn.addEventListener('click', function(){
+  var name = document.getElementById('f-name').value.trim();
+  var wa = document.getElementById('f-wa').value.trim();
+  if(!name||!wa){ alert('Please enter your name and WhatsApp number.'); return; }
+  var ref = genRef(name);
+  var data = {
+    name:name, wa:wa,
+    nationality: document.getElementById('f-nat').value,
+    music: document.getElementById('f-music').value,
+    area: document.getElementById('f-area').value,
+    musician: document.getElementById('f-musician').value,
+    message: document.getElementById('f-msg').value,
+    vipHost: document.getElementById('cb-vip').checked,
+    artist: document.getElementById('cb-artist').checked,
+    rides: document.getElementById('cb-rides').checked,
+    ambassador: document.getElementById('cb-ambassador').checked,
+    referralLink: ref,
+    timestamp: new Date().toISOString()
+  };
+  regBtn.textContent = '📡 TRANSMITTING...';
+  regBtn.disabled = true;
+
+  // Build WhatsApp message for DJ RADAR notification
+  var msg = encodeURIComponent(
+    "🦅 NEW BEATS DUBAI MEMBER!\n\n" +
+    "👤 " + data.name + "\n" +
+    "📱 " + data.wa + "\n" +
+    "🌍 " + (data.nationality||"—") + "\n" +
+    "📍 " + (data.area||"—") + "\n" +
+    "🎵 " + (data.music||"—") + "\n" +
+    (data.vipHost ? "💃 VIP Host applicant\n" : "") +
+    (data.artist ? "🎤 Artist applicant\n" : "") +
+    (data.ambassador ? "📡 Ambassador interest\n" : "")
+  );
+  var waLink = "https://wa.me/971507798427?text=" + msg;
+
+  // Use image tag to bypass CORS — works 100% with Google Apps Script doGet
+  var ping = new Image();
+  ping.src = APPS_URL + '?name=' + encodeURIComponent(data.name) +
+    '&wa=' + encodeURIComponent(data.wa) +
+    '&nat=' + encodeURIComponent(data.nationality||'') +
+    '&area=' + encodeURIComponent(data.area||'') +
+    '&music=' + encodeURIComponent(data.music||'') +
+    '&musician=' + encodeURIComponent(data.musician||'') +
+    '&msg=' + encodeURIComponent(data.message||'') +
+    '&vip=' + (data.vipHost?'1':'0') +
+    '&artist=' + (data.artist?'1':'0') +
+    '&rides=' + (data.rides?'1':'0') +
+    '&amb=' + (data.ambassador?'1':'0') +
+    '&ref=' + encodeURIComponent(ref);
+
+  // Save locally as backup
+  try{var ex=JSON.parse(localStorage.getItem('bd_reg')||'[]');ex.push(data);localStorage.setItem('bd_reg',JSON.stringify(ex));}catch(e){}
+
+  // Show success and open WhatsApp
+  setTimeout(function(){
+    document.getElementById('regOk').style.display='block';
+    document.getElementById('regOk').innerHTML='✅ REGISTERED. WELCOME TO BEATS DUBAI.<br><br>📡 YOUR REFERRAL LINK:<br><span style="color:#C9A84C;font-size:9px;word-break:break-all">'+ref+'</span><br><br>Share this link. Every registration earns you rewards.';
+    regBtn.style.display='none';
+    window.open(waLink, '_blank');
+  }, 1200);
+});
+
+// ── RIDE BOOKING ────────────────────────────────────────────────────
+var rideBtn = document.getElementById('rideBtn');
+if(rideBtn) rideBtn.addEventListener('click', function(){
+  var n=document.getElementById('r-name').value.trim();
+  var w=document.getElementById('r-wa').value.trim();
+  var l=document.getElementById('r-loc').value.trim();
+  if(!n||!w||!l){ alert('Please fill in name, WhatsApp, and pickup location.'); return; }
+  document.getElementById('rideOk').style.display='block';
+  rideBtn.style.display='none';
+});
+
+// ── CONSULT ─────────────────────────────────────────────────────────
+var consultBtn = document.getElementById('consultBtn');
+if(consultBtn) consultBtn.addEventListener('click', function(){
+  var v=document.getElementById('c-venue').value.trim();
+  var w=document.getElementById('c-wa').value.trim();
+  if(!v||!w){ alert('Please enter venue name and WhatsApp.'); return; }
+  document.getElementById('consultOk').style.display='block';
+  consultBtn.style.display='none';
+});
+
+// ── CHECK REF IN URL ────────────────────────────────────────────────
+var params = new URLSearchParams(window.location.search);
+var ref = params.get('ref');
+// Auto-fill referral field in form
+var refField = document.getElementById('ref-field');
+if(refField && ref) refField.value = ref;
+if(ref) {
+  var bn = document.createElement('div');
+  bn.style.cssText='position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0c0a07;border:1px solid #C9A84C;padding:11px 18px;font-family:"Share Tech Mono",monospace;font-size:8.5px;letter-spacing:0.16em;color:#C9A84C;z-index:99999;text-align:center;white-space:nowrap;';
+  bn.textContent='📡 YOU WERE INVITED BY A BEATS DUBAI MEMBER — REGISTER BELOW';
+  document.body.appendChild(bn);
+  setTimeout(function(){if(bn.parentNode)bn.parentNode.removeChild(bn);},6000);
+  showPage('contact');
+}
+
+})();
+</script>
+</body>
+</html>
